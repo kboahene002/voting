@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('student_id')->unique;
             $table->string("password");
-            $table->string("class");
-            $table->string("course");
+            $table->string("student_class");
+            $table->string("student_course");
             $table->softDeletes();
             $table->timestamps();
         });

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('contestants', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('contestant_name');
             $table->integer('category_id')->nullable();
-            $table->text('Description')->nullable();
+            $table->text('contestant_description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
