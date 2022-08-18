@@ -36,7 +36,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 //        LETS STORE CATEGORIES
-        $rules = array('name'=>'required');
+        $rules = array('category_name'=>'required');
         $validateInput = Validator::make($request->all() , $rules);
 
         if($validateInput->fails()){
