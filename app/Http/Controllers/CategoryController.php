@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\ResponseController;
 
 class CategoryController extends Controller
 {
@@ -36,12 +39,38 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 //        LETS STORE CATEGORIES
-        $rules = array('category_name'=>'required');
-        $validateInput = Validator::make($request->all() , $rules);
+        try {
+            $rules = array('category_name'=>'required','mimes:jpeg,jpg,png,gifs|max:10000');
+            $validateInput = Validator::make($request->all() , $rules);
 
-        if($validateInput->fails()){
-            return $validateInput->errors();
+            if($validateInput->fails()){
+                return (new ResponseController())->Error('validation error', $validateInput->errors());
+            }
+//            return $request->all() ;
+            $image_name = '';
+            $file = $request->file('category_image');
+            if($file){
+                $image_name = $file->getClientOriginalName();
+                $file->move('uploads' , $image_name);
+            }
+
+
+            $insert = new Category();
+            $insert['category_name'] = $request->category_name;
+            $insert['category_description'] = $request->category_description;
+            $insert['category_image'] = $image_name;
+
+            $save = $insert->save() ;
+
+            if($save){
+                return (new ResponseController())->Success('Added successfully' , $insert);
+            }
+
+        }catch (Throwable $th){
+            return (new ResponseController())->Error('error'  , $th->getMessage());
         }
+
+
     }
 
     /**
