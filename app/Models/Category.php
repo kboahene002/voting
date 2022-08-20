@@ -14,6 +14,6 @@ class Category extends Model
     protected $dates = ['deleted_at'];
 
     public function contestant(){
-        return $this->belongsToMany(Contestant::class);
+        return $this->hasMany(Contestant::class);
     }
 }

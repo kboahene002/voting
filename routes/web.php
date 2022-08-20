@@ -32,4 +32,5 @@ Route::get('new' , function(){
     return view('new');
 });
 
+
 require __DIR__.'/auth.php';
