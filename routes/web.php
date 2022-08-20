@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,15 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+route::group([],function(){
+    Route::resource('category' , CategoryController::class );
+    Route::get('cat/search' , [CategoryController::class , 'search']);
+});
+
+
+Route::get('new' , function(){
+    return view('new');
+});
 
 require __DIR__.'/auth.php';
