@@ -13,6 +13,13 @@ class Contestant extends Model
     protected $dates = ['deleted_at'];
     protected $table = 'contestants';
 
+    protected $fillable = [
+        'contestant_name',
+        'category_id',
+        'contestant_description',
+        'contestant_image'
+    ];
+
 
     public function category(){
         return $this->belongsTo(Contestant::class );

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('contestant_name');
             $table->integer('category_id')->nullable();
             $table->text('contestant_description')->nullable();
+            $table->string('contestant_image')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

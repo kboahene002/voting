@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContestantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,8 +24,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 route::group([],function(){
+    //category
     Route::resource('category' , CategoryController::class );
     Route::get('cat/search' , [CategoryController::class , 'search']);
+
+    //contestant
+    Route::post('contestant/{id}' , [ContestantController::class , 'insertContestant']);
+    Route::put('contestant/update/{id}' , [ContestantController::class , 'updateContestant']);
+
 });
 
 
