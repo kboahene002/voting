@@ -11,9 +11,12 @@ class Contestant extends Model
 {
     use HasFactory;use SoftDeletes;
     protected $dates = ['deleted_at'];
+    protected $table = 'contestants';
 
-    public function categories(){
-        return $this->hasMany(Category::class , 'category_id');
+
+    public function category(){
+        return $this->belongsTo(Contestant::class );
     }
+
 
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\ResponseController;
 
 
 use App\Models\Category;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -181,4 +182,15 @@ class CategoryController extends Controller
             return (new ResponseController())->Error('Error' , $th->getMessage());
         }
     }
+
+    public function getAllParticipants($id){
+        $category = Category::find($id) ;
+        if($category != null ){
+            return (new ResponseController())->Success($category->count().' contestants found ' , $category->contestants()->get());
+        }else{
+            return (new ResponseController())->Success('no contestant found' , '');
+        }
+
+    }
+
 }

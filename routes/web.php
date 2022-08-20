@@ -28,6 +28,16 @@ route::group([],function(){
 });
 
 
+
+
+
+
+
+//trial routes
+//{GET ALL PARTICIPANTS OF A CATEGORY}
+Route::get('cat/participant/{id}' , [CategoryController::class , 'getAllParticipants']);
+
+
 Route::get('new' , function(){
     return view('new');
 });

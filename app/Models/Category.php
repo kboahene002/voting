@@ -12,8 +12,9 @@ class Category extends Model
     use SoftDeletes;
     use HasFactory;
     protected $dates = ['deleted_at'];
+    protected $table = 'categories';
 
-    public function contestant(){
-        return $this->hasMany(Contestant::class);
+    public function contestants(){
+        return $this->hasMany(Contestant::class , 'category_id');
     }
 }
