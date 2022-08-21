@@ -31,6 +31,7 @@ route::group([],function(){
     //contestant
     Route::post('contestant/{id}' , [ContestantController::class , 'insertContestant']);
     Route::put('contestant/update/{id}' , [ContestantController::class , 'updateContestant']);
+    Route::delete('contestant/delete/{id}' , [ContestantController::class , "deleteContestant"]);
 
 });
 

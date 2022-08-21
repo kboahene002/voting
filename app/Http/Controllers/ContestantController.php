@@ -49,7 +49,7 @@ class ContestantController extends Controller
     }
 
     public function updateContestant(Request $request , $id){
-        $contestant = Contestant::find($id);
+        $contestants = Contestant::find($id);
         $rules = array(
             'contestant_name' => 'required',
             'contestant_image' => 'mimes:jpg,jpeg,png,gif,svg|max:1000'
@@ -64,16 +64,24 @@ class ContestantController extends Controller
             $imageName = $image->getClientOriginalName();
             $image->move('uploads' , $imageName);
         }
-        return $request->all();
-        $contestant->contestant_name = $request->contestant->name;
-        $contestant->contestant_description = $request->contestant->description;
-        $contestant->contestant_image = $imageName;
-        $result = $contestant->save();
-        return (new ResponseController())->Success('Update successfull' , $contestant);
+
+        $result = $contestants->update([
+            'contestant_name'=>$request->contestant_name,
+            'contestant_description'=>$request->contestant_description,
+            'contestant_image'=> $imageName
+
+        ]);
+        return (new ResponseController())->Success('Update successfull' , $contestants);
 
     }
 
-    public function deleteContestant(){
-
+    public function deleteContestant($id){
+        $getContestant = Contestant::find($id);
+        if($getContestant != null){
+            $getContestant->delete();
+            return (new ResponseController())->Success('deleted Successfully' , $getContestant->first());
+        }else{
+            return (new ResponseController())->Success('no result found' , '');
+        }
     }
 }
