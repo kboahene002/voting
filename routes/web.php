@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContestantController;
+use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,10 @@ route::group([],function(){
     Route::put('contestant/update/{id}' , [ContestantController::class , 'updateContestant']);
     Route::delete('contestant/delete/{id}' , [ContestantController::class , "deleteContestant"]);
 
+
+    //student
+    Route::post('insert/student', [StudentsController::class , 'addStudents']);
+
 });
 
 
@@ -46,9 +51,7 @@ route::group([],function(){
 Route::get('cat/participant/{id}' , [CategoryController::class , 'getAllParticipants']);
 
 
-Route::get('new' , function(){
-    return view('new');
-});
+Route::get('new' , [\App\Http\Controllers\VotingController::class , 'ShowContestantByCategory']);
 
 
 require __DIR__.'/auth.php';

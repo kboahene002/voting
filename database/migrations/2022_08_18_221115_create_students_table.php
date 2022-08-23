@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('student_id')->unique;
-            $table->string("password");
-            $table->string("student_class");
-            $table->string("student_course");
+            $table->string('student_id')->unique();
+            $table->string("password")->nullable();
+            $table->string("student_class")->nullable();
+            $table->string("student_course")->nullable();
+            $table->integer("student_eligibility")->default(1); // Only takes 0 & 1 ;
             $table->softDeletes();
             $table->timestamps();
         });
