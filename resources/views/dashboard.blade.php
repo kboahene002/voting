@@ -811,6 +811,20 @@
       $('.add-cat-btn').click(function (e) {
             e.preventDefault();
            console.log('hi');
+
+          $.ajax({
+              url:'"http://127.0.0.1:8000/category',
+              date:"",
+              type:'POST',
+              dataType:"json"
+
+          })
+              .done(function(response){
+                  console.log(response);
+              })
+              .fail(function (response){
+                  console.log(response);
+              })
       })
     </script>
 
