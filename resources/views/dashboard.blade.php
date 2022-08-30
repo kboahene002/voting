@@ -713,28 +713,27 @@
                 </div>
                 <div class="modal-body">
 {{--                    Form for taking categories--}}
-                    <form enctype="multipart/form-data">
+                    <form class="add-cat" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="inputEmail4">Category Name</label>
-                                <input type="text" class="form-control" id="inputEmail4" placeholder="Name">
+                                <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Name">
                             </div>
 
                         </div>
                         <div class="form-group">
                             <div class="md-form">
                                 <i class="fas fa-pencil-alt prefix">Category description</i>
-                                <textarea id="form10" class="md-textarea form-control" rows="3"></textarea>
+                                <textarea id="form10" class="md-textarea form-control"  name="category_description" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="">
                                 <label for="formFileSm" class="form-label">Small file input example</label>
-                                <input class="form-control form-control-sm" id="formFileSm" type="file">
+                                <input class="form-control form-control-sm" id="category_image" name="category_image" type="file">
                             </div>
                         </div>
-
-                        <button type="submit" class="btn btn-dark">Create</button>
+                        <button type="submit" class="btn btn-dark add-cat-btn">Create</button>
                     </form>
                 </div>
 
@@ -771,9 +770,9 @@
     </script>
 
     {{--AJAX--}}
+
     <script>
         $(document).ready( function(){
-            console.log('hello');
             $.ajax({
                 url:"http://127.0.0.1:8000/cat/show",
                 data:"",
@@ -804,9 +803,15 @@
 
             })
             .fail(function (response) {
-                console.log(response);
+                // console.log(response);
             })
         });
+
+
+      $('.add-cat-btn').click(function (e) {
+            e.preventDefault();
+           console.log('hi');
+      })
     </script>
 
 
