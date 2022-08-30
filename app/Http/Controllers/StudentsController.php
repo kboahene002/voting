@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -37,6 +38,36 @@ class StudentsController extends Controller
 
     }
 
-    //Block student for participating
+//    Generate Random Password
+        public function generateTemporaryPassword(){
 
+        }
+    //Student Login
+    public function studentLogin(Request $request){
+        $student_id = $request->student_id;
+        $student_password = $request->student_password;
+        $find_student = Student::where('student_id' , $student_id)->first();
+        if($find_student != null){
+            if(Hash::check($student_password,$find_student->password)) {
+                session()->put(['student_id'=> $find_student->student_id]);
+                return (new ResponseController())->Success('Login Successfull' , null);
+            }else{
+                return (new ResponseController())->Success('Credentials do not match' , null);
+            }
+        }else{
+            return (new ResponseController())->Success('No User Found' , null);
+        }
+
+    }
+
+    //Student logout
+    public function studentLogout(){
+
+    }
+
+
+    //Block & Unblock student from participating
+    public function toggleBlockAndUnblockStudent(Request $request){
+
+    }
 }

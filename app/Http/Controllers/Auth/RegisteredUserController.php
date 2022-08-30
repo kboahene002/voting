@@ -38,11 +38,18 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        $image_name = '';
+        $image = $request->file('user_image');
+        if($image){
+            $image_name = $image->getClientOriginalName();
+            $image->move('uploads' , $image_name);
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'user_image'=> $image_name
         ]);
 
         event(new Registered($user));
