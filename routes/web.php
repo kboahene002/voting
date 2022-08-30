@@ -28,6 +28,8 @@ route::group([],function(){
     //category
     Route::resource('category' , CategoryController::class );
     Route::get('cat/search' , [CategoryController::class , 'search']);
+    Route::get('cat/show' , [CategoryController::class , 'showCat']);
+
 
     //contestant
     Route::post('contestant/{id}' , [ContestantController::class , 'insertContestant']);

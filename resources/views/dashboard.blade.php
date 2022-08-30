@@ -29,6 +29,11 @@
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
         <link href="{{asset('assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script src="{{asset('bootstrap-4.3.1-dist/js/bootstrap.min.js')}}"></script>
+
     </head>
     <body class="bg-gradient-dark" id="page-top">
 
@@ -381,8 +386,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal" class="d-none d-sm-inline-block btn btn-sm btn-dark shadow-sm"><i class="fa fa-plus" aria-hidden="true"></i> </a>
                     </div>
 
                     <!-- Content Row -->
@@ -396,7 +400,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Categories</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800 cat-head-sec"></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -453,48 +457,19 @@
                             </div>
                         </div>
 
-                        <!-- Pending Requests Card Example -->
-{{--                        <div class="col-xl-3 col-md-6 mb-4">--}}
-{{--                            <div class="card border-left-warning shadow h-100 py-2">--}}
-{{--                                <div class="card-body">--}}
-{{--                                    <div class="row no-gutters align-items-center">--}}
-{{--                                        <div class="col mr-2">--}}
-{{--                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">--}}
-{{--                                                Pending Requests</div>--}}
-{{--                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-auto">--}}
-{{--                                            <i class="fas fa-comments fa-2x text-gray-300"></i>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                     </div>
 
                     <!-- Content Row -->
 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h3 class="h3 mb-0 text-gray-800">Categories</h3>
+                        <h3 class="h3 mb-0 text-gray-800">Categories <span style="display:block !important; font-size: 18px; text-transform: capitalize"><p class="text-gray-600 cat-head-sec"> </p></span></h3>
+
                     </div>
 
-                    <div class="row">
+                    <div class="row cat-show">
 
-{{--                       CATEGORIES--}}
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 mb-3">
-                            <div class="card" style="width: 16rem;">
-                                <img src="{{asset('uploads/thumb-1920-515358.jpeg')}}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 style="font-family: 'Playfair Display', serif !important;" class="card-title">Category name</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                   <div>
-                                       <a href="#" style="display:inline" class="btn btn-primary">Check in &rarr;</a>
-                                       <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="display:inline" class="btn btn-dark"> <i class="fa fa-eye" aria-hidden="true"></i> </a>
-                                   </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
+
 
                     <!-- MODAL -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -515,160 +490,166 @@
                         </div>
                     </div>
 
+                    <!-- Button trigger modal -->
+{{--                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">--}}
+{{--                        Launch demo modal--}}
+{{--                    </button>--}}
+
+
                     <!--END OF MODAL -->
 
                     <!-- Content Row -->
-                    <div class="row mt-3">
+{{--                    <div class="row mt-3">--}}
 
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
+{{--                        <!-- Content Column -->--}}
+{{--                        <div class="col-lg-6 mb-4">--}}
 
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server Migration <span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Sales Tracking <span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Customer Database <span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <!-- Project Card Example -->--}}
+{{--                            <div class="card shadow mb-4">--}}
+{{--                                <div class="card-header py-3">--}}
+{{--                                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>--}}
+{{--                                </div>--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <h4 class="small font-weight-bold">Server Migration <span--}}
+{{--                                            class="float-right">20%</span></h4>--}}
+{{--                                    <div class="progress mb-4">--}}
+{{--                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"--}}
+{{--                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>--}}
+{{--                                    </div>--}}
+{{--                                    <h4 class="small font-weight-bold">Sales Tracking <span--}}
+{{--                                            class="float-right">40%</span></h4>--}}
+{{--                                    <div class="progress mb-4">--}}
+{{--                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"--}}
+{{--                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>--}}
+{{--                                    </div>--}}
+{{--                                    <h4 class="small font-weight-bold">Customer Database <span--}}
+{{--                                            class="float-right">60%</span></h4>--}}
+{{--                                    <div class="progress mb-4">--}}
+{{--                                        <div class="progress-bar" role="progressbar" style="width: 60%"--}}
+{{--                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>--}}
+{{--                                    </div>--}}
+{{--                                    <h4 class="small font-weight-bold">Payout Details <span--}}
+{{--                                            class="float-right">80%</span></h4>--}}
+{{--                                    <div class="progress mb-4">--}}
+{{--                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"--}}
+{{--                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>--}}
+{{--                                    </div>--}}
+{{--                                    <h4 class="small font-weight-bold">Account Setup <span--}}
+{{--                                            class="float-right">Complete!</span></h4>--}}
+{{--                                    <div class="progress">--}}
+{{--                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"--}}
+{{--                                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
-                            <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Primary
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-50 small">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            Info
-                                            <div class="text-white-50 small">#36b9cc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Warning
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Danger
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Secondary
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                            Light
-                                            <div class="text-black-50 small">#f8f9fc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Dark
-                                            <div class="text-white-50 small">#5a5c69</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <!-- Color System -->--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-lg-6 mb-4">--}}
+{{--                                    <div class="card bg-primary text-white shadow">--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            Primary--}}
+{{--                                            <div class="text-white-50 small">#4e73df</div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-lg-6 mb-4">--}}
+{{--                                    <div class="card bg-success text-white shadow">--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            Success--}}
+{{--                                            <div class="text-white-50 small">#1cc88a</div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-lg-6 mb-4">--}}
+{{--                                    <div class="card bg-info text-white shadow">--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            Info--}}
+{{--                                            <div class="text-white-50 small">#36b9cc</div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-lg-6 mb-4">--}}
+{{--                                    <div class="card bg-warning text-white shadow">--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            Warning--}}
+{{--                                            <div class="text-white-50 small">#f6c23e</div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-lg-6 mb-4">--}}
+{{--                                    <div class="card bg-danger text-white shadow">--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            Danger--}}
+{{--                                            <div class="text-white-50 small">#e74a3b</div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-lg-6 mb-4">--}}
+{{--                                    <div class="card bg-secondary text-white shadow">--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            Secondary--}}
+{{--                                            <div class="text-white-50 small">#858796</div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-lg-6 mb-4">--}}
+{{--                                    <div class="card bg-light text-black shadow">--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            Light--}}
+{{--                                            <div class="text-black-50 small">#f8f9fc</div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-lg-6 mb-4">--}}
+{{--                                    <div class="card bg-dark text-white shadow">--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            Dark--}}
+{{--                                            <div class="text-white-50 small">#5a5c69</div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
-                        </div>
+{{--                        </div>--}}
 
-                        <div class="col-lg-6 mb-4">
+{{--                        <div class="col-lg-6 mb-4">--}}
 
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                             src="img/undraw_posting_photo.svg" alt="...">
-                                    </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>
-                                </div>
-                            </div>
+{{--                            <!-- Illustrations -->--}}
+{{--                            <div class="card shadow mb-4">--}}
+{{--                                <div class="card-header py-3">--}}
+{{--                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>--}}
+{{--                                </div>--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <div class="text-center">--}}
+{{--                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"--}}
+{{--                                             src="img/undraw_posting_photo.svg" alt="...">--}}
+{{--                                    </div>--}}
+{{--                                    <p>Add some quality, svg illustrations to your project courtesy of <a--}}
+{{--                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a--}}
+{{--                                        constantly updated collection of beautiful svg images that you can use--}}
+{{--                                        completely free and without attribution!</p>--}}
+{{--                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on--}}
+{{--                                        unDraw &rarr;</a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
-                            <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.</p>
-                                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                                        Bootstrap framework, especially the utility classes.</p>
-                                </div>
-                            </div>
+{{--                            <!-- Approach -->--}}
+{{--                            <div class="card shadow mb-4">--}}
+{{--                                <div class="card-header py-3">--}}
+{{--                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>--}}
+{{--                                </div>--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce--}}
+{{--                                        CSS bloat and poor page performance. Custom CSS classes are used to create--}}
+{{--                                        custom components and custom utility classes.</p>--}}
+{{--                                    <p class="mb-0">Before working with this theme, you should become familiar with the--}}
+{{--                                        Bootstrap framework, especially the utility classes.</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
-                        </div>
-                    </div>
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                 </div>
                 <!-- /.container-fluid -->
@@ -720,8 +701,121 @@
         </div>
     </div>
 
+    <!-- add category Modal -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h5 class="modal-title text-dark text-center" id="exampleModalLabel">Add category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+{{--                    Form for taking categories--}}
+                    <form enctype="multipart/form-data">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputEmail4">Category Name</label>
+                                <input type="text" class="form-control" id="inputEmail4" placeholder="Name">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="md-form">
+                                <i class="fas fa-pencil-alt prefix">Category description</i>
+                                <textarea id="form10" class="md-textarea form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <label for="formFileSm" class="form-label">Small file input example</label>
+                                <input class="form-control form-control-sm" id="formFileSm" type="file">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark">Create</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- add show participant Modal -->
+    <div class="modal fade" id="showParticipant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+    </script>
+
+    {{--AJAX--}}
+    <script>
+        $(document).ready( function(){
+            console.log('hello');
+            $.ajax({
+                url:"http://127.0.0.1:8000/cat/show",
+                data:"",
+                type:"GET",
+                dataType:"json",
+            })
+
+            .done(function(response){
+                console.log(response);
+               $('.cat-head-sec').html(response.message);
+               $.each(response.data , function(index , value){
+                   $('.cat-show').append(
+                       "<div class=\"col-xl-3 col-lg-4 col-md-4 col-sm-4 mb-3\">\n" +
+                       "                            <div class=\"card\" style=\"width: 16rem;\">\n" +
+                       "                                <img src=\"{{asset('uploads/thumb-1920-515358.jpeg')}}\" class=\"card-img-top\" alt=\"...\">\n" +
+                       "                                <div class=\"card-body\">\n" +
+                       "                                    <h5 style=\"font-family: 'Playfair Display', serif !important;\" class=\"card-title\">" + value.category_name + "</h5>\n" +
+                       "                                    <p class=\"card-text\">" + value.category_description + "</p>\n" +
+                       "                                   <div>\n" +
+                       "                                       <a href=\"#\" style=\"display:inline\" class=\"btn btn-primary\">Check in &rarr;</a>\n" +
+                       "                                       <a type=\"\" data-toggle=\"modal\" data-target=\"#showParticipant\" style=\"display:inline\" class=\"btn btn-dark\"> <i class=\"fa fa-eye\" aria-hidden=\"true\"></i> </a>\n" +
+                       "                                   </div>\n" +
+                       "                                </div>\n" +
+                       "                            </div>\n" +
+                       "                        </div>"
+                   );
+               });
+
+            })
+            .fail(function (response) {
+                console.log(response);
+            })
+        });
+    </script>
+
+
+
+
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>
+
+
+
     <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Core plugin JavaScript-->
@@ -734,8 +828,8 @@
     <script src="{{asset('assets/vendor/chart.js/Chart.min.js')}}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{asset('assets/js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('assets/js/demo/chart-pie-demo.js')}}"></script>
+{{--    <script src="{{asset('assets/js/demo/chart-area-demo.js')}}"></script>--}}
+{{--    <script src="{{asset('assets/js/demo/chart-pie-demo.js')}}"></script>--}}
 
 
     </body>
