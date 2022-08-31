@@ -71,7 +71,7 @@ class CategoryController extends Controller
             $save = $insert->save() ;
 
             if($save){
-                return (new ResponseController())->Success('Added successfully' , $insert);
+                return (new ResponseController())->Success('Saved successfully' , $insert);
             }
 
         }catch (Throwable $th){
@@ -187,7 +187,7 @@ class CategoryController extends Controller
     public function getAllParticipants($id){
         $category = Category::find($id) ;
         if($category != null ){
-            return (new ResponseController())->Success($category->count().' contestants found ' , $category->contestants()->get());
+            return (new ResponseController())->Success($category->contestants()->count().' contestants found ' , $category->contestants()->get());
         }else{
             return (new ResponseController())->Success('no contestant found' , '');
         }

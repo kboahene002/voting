@@ -24,7 +24,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-
+        <meta name="csrf-token" content="{{csrf_token()}}" />
         <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
@@ -713,14 +713,11 @@
                 </div>
                 <div class="modal-body">
                     {{--Form for taking categories--}}
-                   <div style="" class="border text-center text-danger">
+                   <div style="" class="text-center ">
                        <p class="validation-message"></p>
-
-                       <ul class="validation">
-                            <li> </li>
-                       </ul>
+                       <ul class="validation">  </ul>
                    </div>
-                    <form class="add-cat" enctype="multipart/form-data">
+                    <form class="add-cat" id="myform" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="inputEmail4">Category Name</label>
@@ -731,7 +728,7 @@
                         <div class="form-group">
                             <div class="md-form">
                                 <i class="fas fa-pencil-alt prefix">Category description</i>
-                                <textarea id="form10" class="md-textarea form-control"  name="category_description" rows="3"></textarea>
+                                <textarea id="category_description" class="md-textarea form-control"  name="category_description" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -740,7 +737,19 @@
                                 <input class="form-control form-control-sm" id="category_image" name="category_image" type="file">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-dark add-cat-btn">Create</button>
+
+
+                        <button type="submit" id="create-btn"  class="btn btn-dark add-cat-btn">Create
+
+                        </button>
+                        <div style="display: inline-block; padding-left: 10%" hidden="hidden" class="text-center spinner">
+
+
+                            <div class="spinner-grow text-primary" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+
+                        </div>
                     </form>
                 </div>
 
@@ -751,20 +760,8 @@
     <!-- add show participant Modal -->
     <div class="modal fade" id="showParticipant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+            <div class="card">
+                <img src="{{asset('uploads/thumb-1920-515358.jpeg')}}" class="card-img-top" alt="...">
             </div>
         </div>
     </div>
@@ -776,10 +773,13 @@
         })
     </script>
 
+
+
     {{--AJAX--}}
 
     <script>
         $(document).ready( function(){
+
             $.ajax({
                 url:"http://127.0.0.1:8000/cat/show",
                 data:"",
@@ -799,12 +799,16 @@
                        "                                    <h5 style=\"font-family: 'Playfair Display', serif !important;\" class=\"card-title\">" + value.category_name + "</h5>\n" +
                        "                                    <p class=\"card-text\">" + value.category_description + "</p>\n" +
                        "                                   <div>\n" +
-                       "                                       <a href=\"#\" style=\"display:inline\" class=\"btn btn-primary\">Check in &rarr;</a>\n" +
-                       "                                       <a type=\"\" data-toggle=\"modal\" data-target=\"#showParticipant\" style=\"display:inline\" class=\"btn btn-dark\"> <i class=\"fa fa-eye\" aria-hidden=\"true\"></i> </a>\n" +
+                       "                                       <a href=\"#\" style=\"display:inline-block\" class=\"btn btn-primary\">Check in &rarr;</a>\n" +
+                       "                                   <form style=\"display:inline-block\" action=\" \">"+
+                       "                                        <input type=\"text\" hidden value=\" " + value.id + " \">"+
+                       "                                        <button data-toggle=\"modal\" style=\"display:inline-block\" data-target=\"#showParticipant\" aria-hidden=\"true\" class=\"btn btn-dark ssss\"> <i class=\"fa fa-eye \"></i></button>" +
+                       "                                   </form>"+
                        "                                   </div>\n" +
                        "                                </div>\n" +
                        "                            </div>\n" +
                        "                        </div>"
+
                    );
                });
 
@@ -814,27 +818,67 @@
             })
         });
 
+        $('.ssss').click(function(e){
+            e.preventDefault();
+        });
+
 
       $('.add-cat-btn').click(function (e) {
             e.preventDefault();
-           console.log('hi');
+           $('#create-btn').attr('disabled','disabled');
+           $('.spinner').removeAttr('hidden' , 'hidden');
            $('.validation-message').html('');
 
+           //VARIABLES
+          let category_name = $('#category_name').val();
+          let category_description = $('#category_description').val();
+          let category_image = $('#category_image').val().replace(/C:\\fakepath\\/i, '');
+          console.log(category_image);
+
+          $.ajaxSetup({
+              headers:{
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+              }
+          })
           $.ajax({
               url:'http://127.0.0.1:8000/category',
-              date:"",
+              data:$('#myform').serialize(),
               type:'POST',
-              dataType:"json"
+              dataType:"json",
+
 
           })
               .done(function(response){
-                  console.log(response.message);
-                  $('.validation-message').html(response.message);
-                  $.each(response.data , function(index , value){
-                      $('.validation').append(
-                          ""
-                      )
-                  })
+                  if(response.status == 200){
+                      $('.validation-message').addClass('text-success');
+                      $('.validation-message').html(response.message);
+                      setTimeout(function() {
+                          $('.validation-message').html('');
+                          $('.validation-message').removeClass('text-success');
+                          $('.validation').html('');
+
+                          location.reload();
+                      }, 3000);
+
+
+
+                  }else if(response.status == 403){
+                      $('.validation-message').addClass('text-danger');
+                      $('.validation-message').html(response.message);
+                      $('.validation').addClass('text-danger');
+                      $.each(response.data , function(index , value){
+                          $('.validation').html('<li>'+ value +  '</li>');
+                          console.log(value);
+                      })
+                      setTimeout(function() {
+                          $('.validation-message').html('');
+                          $('.validation-message').removeClass('text-danger');
+                          $('.validation').html('');
+                          $('#create-btn').removeAttr('disabled','disabled');
+                          $('.spinner').attr('hidden' , 'hidden');
+                      }, 3000);
+                  }
+                  console.log(response.status);
 
               })
               .fail(function (response){
