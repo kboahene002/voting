@@ -45,6 +45,7 @@ class CategoryController extends Controller
     {
 //        LETS STORE CATEGORIES
         try {
+
             $rules = array(
                 'category_name'=>'required|unique:categories',
                 'category_image'=>'mimes:jpeg,jpg,png,gifs|max:10000');

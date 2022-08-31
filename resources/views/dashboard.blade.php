@@ -712,7 +712,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-{{--                    Form for taking categories--}}
+                    {{--Form for taking categories--}}
+                   <div style="" class="border text-center text-danger">
+                       <p class="validation-message"></p>
+
+                       <ul class="validation">
+                            <li> </li>
+                       </ul>
+                   </div>
                     <form class="add-cat" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="form-group col-md-12">
@@ -811,16 +818,24 @@
       $('.add-cat-btn').click(function (e) {
             e.preventDefault();
            console.log('hi');
+           $('.validation-message').html('');
 
           $.ajax({
-              url:'"http://127.0.0.1:8000/category',
+              url:'http://127.0.0.1:8000/category',
               date:"",
               type:'POST',
               dataType:"json"
 
           })
               .done(function(response){
-                  console.log(response);
+                  console.log(response.message);
+                  $('.validation-message').html(response.message);
+                  $.each(response.data , function(index , value){
+                      $('.validation').append(
+                          ""
+                      )
+                  })
+
               })
               .fail(function (response){
                   console.log(response);
