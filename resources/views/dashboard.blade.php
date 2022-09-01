@@ -466,8 +466,8 @@
 
                     </div>
 
-                    <div class="row cat-show">
-
+                    <div class="row cat-show" id="cat-show">
+                     @include('categories.show_category');
                     </div>
 
 
@@ -777,45 +777,19 @@
 
     {{--AJAX--}}
 
-    <script>
-        $(document).ready( function(){
 
-            $.ajax({
-                url:"http://127.0.0.1:8000/cat/show",
-                data:"",
-                type:"GET",
-                dataType:"json",
-            })
 
-            .done(function(response){
-                console.log(response);
-               $('.cat-head-sec').html(response.message);
-               $.each(response.data , function(index , value){
-                   $('.cat-show').append(
-                       "<div class=\"col-xl-3 col-lg-4 col-md-4 col-sm-4 mb-3\">\n" +
-                       "                            <div class=\"card\" style=\"width: 16rem;\">\n" +
-                       "                                <img src=\"{{asset('uploads/thumb-1920-515358.jpeg')}}\" class=\"card-img-top\" alt=\"...\">\n" +
-                       "                                <div class=\"card-body\">\n" +
-                       "                                    <h5 style=\"font-family: 'Playfair Display', serif !important;\" class=\"card-title\">" + value.category_name + "</h5>\n" +
-                       "                                    <p class=\"card-text\">" + value.category_description + "</p>\n" +
-                       "                                   <div>\n" +
-                       "                                       <a href=\"#\" style=\"display:inline-block\" class=\"btn btn-primary\">Check in &rarr;</a>\n" +
-                       "                                   <form style=\"display:inline-block\" action=\" \">"+
-                       "                                        <input type=\"text\" hidden value=\" " + value.id + " \">"+
-                       "                                        <button data-toggle=\"modal\" style=\"display:inline-block\" data-target=\"#showParticipant\" aria-hidden=\"true\" class=\"btn btn-dark ssss\"> <i class=\"fa fa-eye \"></i></button>" +
-                       "                                   </form>"+
-                       "                                   </div>\n" +
-                       "                                </div>\n" +
-                       "                            </div>\n" +
-                       "                        </div>"
-
-                   );
-               });
-
-            })
-            .fail(function (response) {
-                // console.log(response);
-            })
+    <script type="text/javascript">
+        $(document).ready(function () {
+            setInterval(() => {
+                $.ajax({
+                    url:"{{ route('cat_show') }}",
+                    success: function(res) {
+                        $('#cat-show').html(res);
+                        //console.log(res);
+                    }
+                });
+            }, 9000);
         });
 
         $('.ssss').click(function(e){
@@ -863,6 +837,7 @@
 
 
                   }else if(response.status == 403){
+
                       $('.validation-message').addClass('text-danger');
                       $('.validation-message').html(response.message);
                       $('.validation').addClass('text-danger');

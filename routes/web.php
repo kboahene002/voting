@@ -20,15 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+Route::get('dashboard' , [\App\Http\Controllers\DashboardController::class , 'show_dashboard'])->middleware(['auth'])->name('dashboard');
 
 route::group([],function(){
     //category
     Route::resource('category' , CategoryController::class );
     Route::get('cat/search' , [CategoryController::class , 'search']);
-    Route::get('cat/show' , [CategoryController::class , 'showCat']);
+    Route::get('cat/show' , [CategoryController::class , 'showCat'])->name('cat_show');
 
 
     //contestant

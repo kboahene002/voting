@@ -195,8 +195,8 @@ class CategoryController extends Controller
     }
 
     public function showCat(){
-        $categories = Category::all();
-        return (new ResponseController())->success($categories->count().' categories' , $categories);
+       $categories['categories'] = Category::all();
+        return view('categories.show_category')->with($categories);
     }
 
 
