@@ -798,7 +798,7 @@
                    $('.cat-show').append(
                        "<div class=\"col-xl-3 col-lg-4 col-md-4 col-sm-4 mb-3\">\n" +
                        "                            <div class=\"card\" style=\"width: 16rem;\">\n" +
-                       "                                <img src=\"{{asset('uploads/thumb-1920-515358.jpeg')}}\" class=\"card-img-top\" alt=\"...\">\n" +
+                       "                                <img style=\" width: 300px !important; height:200px; \" src=\"{{asset('uploads')}}/" + value.category_image +"  \" class=\"card-img-top\" alt=\"...\">\n" +
                        "                                <div class=\"card-body\">\n" +
                        "                                    <h5 style=\"font-family: 'Playfair Display', serif !important;\" class=\"card-title\">" + value.category_name + "</h5>\n" +
                        "                                    <p class=\"card-text\">" + value.category_description + "</p>\n" +
@@ -829,7 +829,19 @@
         function participant(){
             $('.ssss').click(function () {
                let category_id = $(this).attr('data-id');
-               console.log(category_id);
+
+               $.ajax({
+                   url:"http://127.0.0.1:8000/cat/participant/"+category_id,
+                   type:"GET",
+                   dataType:"json",
+               })
+                .done(function(response){
+                    console.log(response);
+                })
+                .fail(function(response){
+
+                })
+
 
             })
         }
