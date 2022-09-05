@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\ResponseController;
 
 
+use App\Http\Controllers\ResponseController;
+use App\Http\Controllers\ResponseController;
 use App\Models\Category;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -195,8 +197,15 @@ class CategoryController extends Controller
     }
 
     public function showCat(){
-       $categories['categories'] = Category::all();
-        return view('categories.show_category')->with($categories);
+       $categories = Category::all();
+       if($categories->count() <= 1){
+           return (new ResponseController())->Success($categories->count().'Category', $categories);
+       }else{
+           return (new ResponseController())->Success($categories->count().'Categories', $categories);
+       }
+
+
+
     }
 
 

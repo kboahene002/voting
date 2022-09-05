@@ -759,9 +759,10 @@
 
     <!-- add show participant Modal -->
     <div class="modal fade" id="showParticipant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" role="document"   >
             <div class="card">
-                <img src="{{asset('uploads/thumb-1920-515358.jpeg')}}" class="card-img-top" alt="...">
+{{--                <img src="{{asset('uploads/thumb-1920-515358.jpeg')}}" class="card-img-top" alt="...">--}}
+
             </div>
         </div>
     </div>
@@ -779,22 +780,60 @@
 
 
 
+<<<<<<< HEAD
     <script type="text/javascript">
         $(document).ready(function () {
-            setInterval(() => {
                 $.ajax({
                     url:"{{ route('cat_show') }}",
                     success: function(res) {
                         $('#cat-show').html(res);
                         //console.log(res);
                     }
-                });
-            }, 9000);
+                })
+
+            .done(function(response){
+
+               $('.cat-head-sec').html(response.message);
+               $.each(response.data , function(index , value){
+                   $('.cat-show').append(
+                       "<div class=\"col-xl-3 col-lg-4 col-md-4 col-sm-4 mb-3\">\n" +
+                       "                            <div class=\"card\" style=\"width: 16rem;\">\n" +
+                       "                                <img src=\"{{asset('uploads/thumb-1920-515358.jpeg')}}\" class=\"card-img-top\" alt=\"...\">\n" +
+                       "                                <div class=\"card-body\">\n" +
+                       "                                    <h5 style=\"font-family: 'Playfair Display', serif !important;\" class=\"card-title\">" + value.category_name + "</h5>\n" +
+                       "                                    <p class=\"card-text\">" + value.category_description + "</p>\n" +
+                       "                                   <div>\n" +
+                       "                                       <a href=\"#\" style=\"display:inline-block\" class=\"btn btn-primary\">Check in &rarr;</a>\n" +
+                       "                                   <form style=\"display:inline-block\" >"+
+
+                       "                                        <a data-id=\" " + value.id + " \" id=\"buttons \" data-toggle=\"modal\" style=\"display:inline-block\" data-target=\"#showParticipant\" aria-hidden=\"true\" class=\"btn btn-dark ssss\"> <i class=\"fa fa-eye \"></i></a>" +
+                       "                                   </form>"+
+                       "                                   </div>\n" +
+                       "                                </div>\n" +
+                       "                            </div>\n" +
+                       "                        </div>"
+
+                   );
+               });
+
+
+                participant();
+
+            })
+            .fail(function (response) {
+                // console.log(response);
+            })
+
         });
 
-        $('.ssss').click(function(e){
-            e.preventDefault();
-        });
+        function participant(){
+            $('.ssss').click(function () {
+               let category_id = $(this).attr('data-id');
+               console.log(category_id);
+
+            })
+        }
+
 
 
       $('.add-cat-btn').click(function (e) {
@@ -807,7 +846,15 @@
           let category_name = $('#category_name').val();
           let category_description = $('#category_description').val();
           let category_image = $('#category_image').val().replace(/C:\\fakepath\\/i, '');
-          console.log(category_image);
+          //let  sel_files = $('#category_image').val();
+          let file_data = $('#category_image').prop('files')[0];
+          let form_data = new FormData();
+          form_data.append('category_image', file_data);
+          form_data.append('category_name', category_name);
+          form_data.append('category_description', category_description);
+
+
+          console.log(form_data);
 
           $.ajaxSetup({
               headers:{
@@ -816,9 +863,13 @@
           })
           $.ajax({
               url:'http://127.0.0.1:8000/category',
-              data:$('#myform').serialize(),
+              data:form_data,
               type:'POST',
               dataType:"json",
+              cache: false,
+              contentType: false,
+              processData: false,
+
 
 
           })
@@ -859,7 +910,34 @@
               .fail(function (response){
                   console.log(response);
               })
+
+
       })
+
+        $.ajax(
+            {
+                url: '',
+                data: "",
+                type: "",
+                dataType: ''
+            })
+
+        .done(function(response){
+
+        })
+        .fail(function(reponse){
+
+        })
+
+
+        ///////////////////////////
+
+        $('.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ').click(function(e){
+            e.preventDefault();
+            console.log('hi');
+        })
+
+
     </script>
 
 
