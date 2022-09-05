@@ -798,10 +798,10 @@
                    $('.cat-show').append(
                        "<div class=\"col-xl-3 col-lg-4 col-md-4 col-sm-4 mb-3\">\n" +
                        "                            <div class=\"card\" style=\"width: 16rem;\">\n" +
-                       "                                <img style=\" width: 300px !important; height:200px; \" src=\"{{asset('uploads')}}/" + value.category_image +"  \" class=\"card-img-top\" alt=\"...\">\n" +
+                       "                                <img style=\"  height:180px; \" src=\"{{asset('uploads')}}/" + value.category_image +"  \" class=\"card-img-top\" alt=\"...\">\n" +
                        "                                <div class=\"card-body\">\n" +
                        "                                    <h5 style=\"font-family: 'Playfair Display', serif !important;\" class=\"card-title\">" + value.category_name + "</h5>\n" +
-                       "                                    <p class=\"card-text\">" + value.category_description + "</p>\n" +
+                       "                                    <p  class=\"card-text\">" + value.category_description + "</p>\n" +
                        "                                   <div>\n" +
                        "                                       <a href=\"#\" style=\"display:inline-block\" class=\"btn btn-primary\">Check in &rarr;</a>\n" +
                        "                                   <form style=\"display:inline-block\" >"+
