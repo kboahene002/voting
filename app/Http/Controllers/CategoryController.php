@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\ResponseController;
 
 
+
 use App\Models\Category;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -185,9 +186,9 @@ class CategoryController extends Controller
     }
 
     public function getAllParticipants($id){
-        $category = Category::find($id) ;
+        $category = Category::with('contestants')->where('id',$id)->first() ;
         if($category != null ){
-            return (new ResponseController())->Success($category->contestants()->count().' contestants found ' , $category->contestants()->get());
+            return (new ResponseController())->Success($category->contestants->count().' contestants  ' , $category);
         }else{
             return (new ResponseController())->Success('no contestant found' , '');
         }
@@ -201,8 +202,6 @@ class CategoryController extends Controller
        }else{
            return (new ResponseController())->Success($categories->count().'Categories', $categories);
        }
-
-
 
     }
 

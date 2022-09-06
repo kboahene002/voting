@@ -759,11 +759,42 @@
 
     <!-- add show participant Modal -->
     <div class="modal fade" id="showParticipant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document"   >
-            <div class="card">
-{{--                <img src="{{asset('uploads/thumb-1920-515358.jpeg')}}" class="card-img-top" alt="...">--}}
+        <div class="modal-dialog" role="document"  >
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <div style="background-color: red !important;" id="modal_cat_image">
 
+                    </div>
+                </div>
+                <div class="card">
+
+                    <div>
+                        <div class="container">
+                            <div id="modal_cat_head">
+
+                            </div>
+
+
+                            <div class="row" id="modal_contestant_info">
+
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-4"></div>
+                                <div class="col-4 ">
+                                    <button  href="" class="btn btn-dark "><i class="fa fa-trash"></i></button>
+                                    <button href="" class="btn btn-primary"> <i class="fa fa-pen"></i></button>
+                                    <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="col-4"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 
@@ -780,7 +811,7 @@
 
 
 
-<<<<<<< HEAD
+
     <script type="text/javascript">
         $(document).ready(function () {
                 $.ajax({
@@ -829,6 +860,7 @@
         function participant(){
             $('.ssss').click(function () {
                let category_id = $(this).attr('data-id');
+               $('#modal_contestant_info').html('');
 
                $.ajax({
                    url:"http://127.0.0.1:8000/cat/participant/"+category_id,
@@ -836,7 +868,24 @@
                    dataType:"json",
                })
                 .done(function(response){
-                    console.log(response);
+                    if(response.status == 200){
+                        console.log(response.data.category_image);
+                        $('#modal_cat_image').html("<img height='300px' src=\"{{asset('uploads')}}/"+response.data.category_image+"   \" class=\"card-img-top\" alt=\"...\">");
+                        $('#modal_cat_head').html("<p class='text-center mt-3 text-dark' >"+response.message+"</p>  ");
+                        $('#modal_cat_head').append("<p class='text-center mt-3 text-dark' >"+response.data.category_description+"</p>  ");
+
+                        $.each(response.data.contestants , function(index , value){
+                            $('#modal_contestant_info').append(" <div class=\"col-md\">\n" +
+                                "                                   <img class=\"rounded-circle z-depth-2\" width=\"80\" height=\"80\" alt=\"100x100\" src=\"{{asset('uploads')}}/" + value.contestant_image +"  \"\n" +
+                                "                                        data-holder-rendered=\"true\">\n" +
+                                "                                   <p style=\" font-size:13px \" class=\"text-left\">"+value.contestant_name +"</p>\n" +
+                                "                               </div>");
+                            })
+
+
+
+                    }
+
                 })
                 .fail(function(response){
 
