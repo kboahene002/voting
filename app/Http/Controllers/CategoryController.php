@@ -205,6 +205,14 @@ class CategoryController extends Controller
 
     }
 
+    public function checkin($id){
+//        return view('checkin');
+//        -CREATE ADD PARTICIPANT , VIEW ALL PARTICIPANTS , BLOCK PARTICIPANTS ,
+        $categoryWithContestants = $this->getAllParticipants($id);
+        return view('checkin');
+
+    }
+
 
 
 

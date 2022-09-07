@@ -17,153 +17,8 @@
 {{--</x-app-layout>--}}
 
 
-<html>
-    <head>
-        <!-- Custom fonts for this template-->
-        <link href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-        <meta name="csrf-token" content="{{csrf_token()}}" />
-        <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
-        <link href="{{asset('assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
-
-
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-        <script src="{{asset('bootstrap-4.3.1-dist/js/bootstrap.min.js')}}"></script>
-
-    </head>
-    <body class="bg-gradient-dark" id="page-top">
-
-    <!-- Page Wrapper -->
-    <div class=""id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-squint"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Dekel Voting </div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                   aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Categories</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                   aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                   aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>Kelvin's Voting System</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>
-
-        </ul>
-        <!-- End of Sidebar -->
+@extends('navigation')
+ @section('content')
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -762,7 +617,7 @@
         <div class="modal-dialog" role="document"  >
             <div class="modal-content">
                 <div class="modal-header ">
-                    <div style="background-color: red !important;" id="modal_cat_image">
+                    <div  id="modal_cat_image">
 
                     </div>
                 </div>
@@ -783,9 +638,9 @@
                                 <div class="col-4 ">
                                     <button  href="" class="btn btn-dark "><i class="fa fa-trash"></i></button>
                                     <button href="" class="btn btn-primary"> <i class="fa fa-pen"></i></button>
-                                    <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="">&times;</span>
-                                    </button>
+{{--                                    <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close">--}}
+{{--                                        <span aria-hidden="">&times;</span>--}}
+{{--                                    </button>--}}
                                 </div>
                                 <div class="col-4"></div>
                             </div>
@@ -814,6 +669,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+
                 $.ajax({
                     url:"{{ route('cat_show') }}",
                     success: function(res) {
@@ -829,15 +685,16 @@
                    $('.cat-show').append(
                        "<div class=\"col-xl-3 col-lg-4 col-md-4 col-sm-4 mb-3\">\n" +
                        "                            <div class=\"card\" style=\"width: 16rem;\">\n" +
-                       "                                <img style=\"  height:180px; \" src=\"{{asset('uploads')}}/" + value.category_image +"  \" class=\"card-img-top\" alt=\"...\">\n" +
+                       "                                <img style=\"  height:180px; object-fit:cover; \" src=\"{{asset('uploads')}}/" + value.category_image +"  \" class=\"card-img-top\" alt=\"...\">\n" +
                        "                                <div class=\"card-body\">\n" +
                        "                                    <h5 style=\"font-family: 'Playfair Display', serif !important;\" class=\"card-title\">" + value.category_name + "</h5>\n" +
                        "                                    <p  class=\"card-text\">" + value.category_description + "</p>\n" +
                        "                                   <div>\n" +
-                       "                                       <a href=\"#\" style=\"display:inline-block\" class=\"btn btn-primary\">Check in &rarr;</a>\n" +
+                       "                                       <a href=\"#\" data-id=\" " + value.id + " \" style=\"display:inline-block\" class=\"btn btn-primary check-in\">Check in &rarr;</a>\n" +
                        "                                   <form style=\"display:inline-block\" >"+
 
                        "                                        <a data-id=\" " + value.id + " \" id=\"buttons \" data-toggle=\"modal\" style=\"display:inline-block\" data-target=\"#showParticipant\" aria-hidden=\"true\" class=\"btn btn-dark ssss\"> <i class=\"fa fa-eye \"></i></a>" +
+                       "                                        <a id=\"buttons \" data-toggle=\"modal\" style=\"display:inline-block\" data-target=\"#showParticipant\" aria-hidden=\"true\" class=\"btn btn-danger \"> <i class=\"fa fa-pen \"></i></a>" +
                        "                                   </form>"+
                        "                                   </div>\n" +
                        "                                </div>\n" +
@@ -849,6 +706,7 @@
 
 
                 participant();
+                checkIn();
 
             })
             .fail(function (response) {
@@ -856,6 +714,7 @@
             })
 
         });
+
 
         function participant(){
             $('.ssss').click(function () {
@@ -892,6 +751,13 @@
                 })
 
 
+            })
+        }
+
+        function checkIn(){
+            $('.check-in').click(function(){
+                let category_id = $(this).attr('data-id');
+                window.location.href = 'checkin/'+category_id ;
             })
         }
 
@@ -1024,6 +890,4 @@
 {{--    <script src="{{asset('assets/js/demo/chart-pie-demo.js')}}"></script>--}}
 
 
-    </body>
-
-</html>
+ @stop

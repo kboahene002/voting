@@ -28,6 +28,7 @@ route::group([],function(){
     Route::resource('category' , CategoryController::class );
     Route::get('cat/search' , [CategoryController::class , 'search']);
     Route::get('cat/show' , [CategoryController::class , 'showCat'])->name('cat_show');
+    Route::get('checkin/{id}' ,[CategoryController::class , 'checkin']);
 
 
     //contestant
